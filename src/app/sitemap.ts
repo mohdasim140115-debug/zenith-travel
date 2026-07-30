@@ -3,6 +3,7 @@ import { siteConfig } from "@/data/site-config";
 import { destinations } from "@/data/destinations";
 import { packages } from "@/data/packages";
 import { activities } from "@/data/activities";
+import { hotels } from "@/data/hotels";
 import { blogPosts } from "@/data/blogs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/packages",
     "/flights",
     "/activities",
+    "/hotels",
     "/blog",
     "/about",
     "/contact",
@@ -55,5 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...destinationRoutes, ...packageRoutes, ...activityRoutes, ...blogRoutes];
+  const hotelRoutes = hotels.map((h) => ({
+    url: `${siteConfig.url}/hotels/${h.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...destinationRoutes, ...packageRoutes, ...activityRoutes, ...blogRoutes, ...hotelRoutes];
 }

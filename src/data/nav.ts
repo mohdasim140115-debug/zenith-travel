@@ -84,6 +84,7 @@ export const navItems: NavItem[] = [
     ],
   },
   { label: "Activities", href: "/activities" },
+  { label: "Hotels", href: "/hotels" },
   { label: "Blog", href: "/blog" },
   { label: "Flights", href: "/flights", badge: "New" },
   { label: "Custom Package Builder", href: "/customize" },
