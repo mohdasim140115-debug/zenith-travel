@@ -5,7 +5,7 @@ import { circuits } from "@/data/circuits";
 import { formatINR } from "@/lib/utils";
 import SectionHeader from "@/components/ui/section-header";
 import FadeIn from "@/components/motion/fade-in";
-import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-reveal";
+import ScrollRail from "@/components/ui/scroll-rail";
 
 export default function PopularDestinations() {
   return (
@@ -19,18 +19,19 @@ export default function PopularDestinations() {
           />
         </FadeIn>
 
-        <StaggerContainer className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {circuits.map((c) => (
-            <StaggerItem key={c.slug}>
+        <div className="mt-10">
+          <ScrollRail>
+            {circuits.map((c) => (
               <Link
+                key={c.slug}
                 href={`/destinations/${c.destinationSlug}#${c.slug}`}
-                className="card-premium group relative flex h-72 flex-col justify-end overflow-hidden rounded-[20px]"
+                className="card-premium group relative flex h-72 w-[85vw] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-[20px] sm:w-80 lg:w-96"
               >
                 <Image
                   src={c.image}
                   alt={c.name}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 85vw, (max-width: 1024px) 320px, 384px"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/25 to-transparent" />
@@ -48,9 +49,9 @@ export default function PopularDestinations() {
                   </div>
                 </div>
               </Link>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+            ))}
+          </ScrollRail>
+        </div>
       </div>
     </section>
   );

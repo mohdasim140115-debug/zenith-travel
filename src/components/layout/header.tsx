@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
@@ -178,8 +179,8 @@ export default function Header() {
         <div className="pointer-events-none absolute inset-x-0 top-full z-40 h-screen animate-dropdown bg-navy-950/20 backdrop-blur-[1px]" />
       )}
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
+      {/* Mobile drawer — rendered via portal so it isn't confined by the header's backdrop-blur containing block */}
+      {mobileOpen && typeof document !== "undefined" && createPortal(
         <div className="fixed inset-0 z-[60] lg:hidden">
           <div className="absolute inset-0 bg-navy-950/60" onClick={() => setMobileOpen(false)} />
           <div className="absolute right-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto bg-white p-6 shadow-2xl animate-fade-up">
@@ -236,7 +237,8 @@ export default function Header() {
               <Phone size={16} /> Call {siteConfig.phoneDisplay}
             </a>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

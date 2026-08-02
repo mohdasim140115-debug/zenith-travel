@@ -22,7 +22,7 @@ export default function Reviews() {
             {testimonials.map((t) => (
               <div
                 key={t.name}
-                className="card-premium flex min-h-[420px] w-96 shrink-0 snap-start flex-col rounded-2xl border border-mist-200 bg-white p-6"
+                className="card-premium flex min-h-105 w-[85vw] shrink-0 snap-start flex-col rounded-2xl border border-mist-200 bg-white p-5 sm:w-96 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-2">
                   <span className="rounded-full bg-gold-500/15 px-3 py-1.5 text-xs font-semibold text-gold-700">
